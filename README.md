@@ -3,9 +3,9 @@
 
 ## Install
 
-Create a system environment varience ARNOLD_PLUGIN_PATH which points to the folder of OSL.
+Create a system environment variable ARNOLD_PLUGIN_PATH which points to the folder of OSL.
 
-Houdini can create the ARNOLD_PLUGIN_PATH varience in houdini.env
+Houdini can create the ARNOLD_PLUGIN_PATH variable in houdini.env
 
 
 
