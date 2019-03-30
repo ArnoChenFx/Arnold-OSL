@@ -1,0 +1,12 @@
+[node randomUVW]  
+	c4d.classification STRING "osl"
+	c4d.menu STRING "osl/uvw"	
+	houdini.category STRING "Osl/uvw" 
+    maya.name               STRING  "randomUVW"
+    maya.id                 INT     0x00199546
+    maya.classification     STRING  "osl/uvw"
+    maya.output_name        STRING  "outColor"
+    maya.output_shortname   STRING  "out"
+	
+
+		
