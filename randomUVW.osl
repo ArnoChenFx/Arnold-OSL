@@ -28,75 +28,80 @@ shader randomUVW
 
     float Uniform_Scale_Varience = 0,
 
-    
+
 
     //offset
 
     vector Offset = 0,
 
-    vector Offset_Varience = 0,    
+    vector Offset_Varience = 0,
 
-    
+
 
     //extra
 
     int Mirror = 0,
 
-    float Seed = 1
+    float Seed = 1 ,
 
-    
+    int Singal_Object = 0,
+    vector RepeatUVW = 1
 
 )
 
 {
 
-    float myU = u - 0.5;
+    float ID = Object_ID;
 
-    float myV = v - 0.5;
+    float fu = 0;
+    float fv = 0;
 
-    
+    float uu = u*RepeatUVW[0];
+    float vv = v*RepeatUVW[1];
+    if(Singal_Object !=0 )
+    {
+        fu = floor(uu);
+        fv = floor(vv);
+        ID = fu+fv;
+    }
+
+    float myU = uu - (0.5 + fu);
+
+    float myV = vv - (0.5 + fv);
 
     //scale
+    float Srandf = cos(ID*Uniform_Scale_Varience*354+Seed)*Uniform_Scale_Varience;
+    float SrandfU = cos(ID*Scale_Varience[0]*144+Seed)*Scale_Varience[0];
+    float SrandfV = cos(ID*Scale_Varience[1]*475+Seed)*Scale_Varience[1];
 
-    float Srandf = cos(Object_ID*Uniform_Scale_Varience*354+Seed)*Uniform_Scale_Varience;
-
-    float SrandfU = cos(Object_ID*Scale_Varience[0]*144+Seed)*Scale_Varience[0];
-
-    float SrandfV = cos(Object_ID*Scale_Varience[1]*475+Seed)*Scale_Varience[1];
-
-    
 
     myU -= myU * (SrandfU + Srandf + Scale[0] + Uniform_Scale - 2);
 
     myV -= myV * (SrandfV + Srandf + Scale[1] + Uniform_Scale - 2);
 
-    
 
     //rotate
 
-    int Rrandi = floor(Object_ID*360/Rotate_Step * Seed);
-
-    float Rrandf = cos(Object_ID*Rotate_Varience*454)*Rotate_Varience;
-
-
+    int Rrandi = floor(cos(ID*14104)*6514+Seed+1);
+    float Rrandf = cos(ID*Rotate_Varience*454)*Rotate_Varience;
 
     float final_rotate = radians(Rotate_Step * Rrandi + Rrandf + Rotate);
 
-    float u1 = cos(final_rotate) * myU - sin(final_rotate) * myV;
+    //final_rotate = M_PI_2*4;
 
+    float u1 = cos(final_rotate) * myU - sin(final_rotate) * myV;
     float v1 = sin(final_rotate) * myU + cos(final_rotate) * myV;
 
-    myU = u1 + 0.5;
+    myU = u1 + 0.5 + fu;
+    myV = v1 + 0.5 + fv;
 
-    myV = v1 + 0.5;
 
-    
 
     //offset
 
-    float PrandfU = cos(Object_ID*Offset_Varience[0]*157+Seed)*Offset_Varience[0];
+    float PrandfU = cos(ID*Offset_Varience[0]*157+Seed)*Offset_Varience[0];
 
-    float PrandfV = cos(Object_ID*Offset_Varience[1]*452+Seed)*Offset_Varience[1];   
+    float PrandfV = cos(ID*Offset_Varience[1]*452+Seed)*Offset_Varience[1];
 
     myU += (PrandfU + Offset[0]) * 0.1;
 
@@ -128,13 +133,13 @@ shader randomUVW
 
         else myU = 1.0 - mod(myU,1.0);
 
-        
+
 
         if(tempV%2 == 0) myV = mod(myV,1.0);
 
         else myV = 1.0 - mod(myV,1.0);
 
-        
+
 
     }
 
