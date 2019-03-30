@@ -46,7 +46,7 @@ shader randomUVW
 
     int Singal_Object = 0,
     
-    vector RepeatUVW = 1
+    vector Repeat_UVW = 1
 
 )
 
