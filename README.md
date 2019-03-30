@@ -5,7 +5,7 @@
 
 Create a system environment variable ARNOLD_PLUGIN_PATH which points to the folder of OSL.
 
-Houdini can create the ARNOLD_PLUGIN_PATH variable in houdini.env
+Houdini: Create the ARNOLD_PLUGIN_PATH variable in houdini.env
 
 
 
