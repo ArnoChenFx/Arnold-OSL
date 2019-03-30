@@ -19,4 +19,5 @@ Houdini可以在houdini.env里创建ARNOLD_PLUGIN_PATH变量
 ## 01.randomUVW
 
 
-![image](https://github.com/ArnoChenFx/Arnold-OSL/edit/master/images/randomUVW.jpg)
+![randomUVW image](https://github.com/ArnoChenFx/Arnold-OSL/tree/master/images/randomUVW.jpg)
+
