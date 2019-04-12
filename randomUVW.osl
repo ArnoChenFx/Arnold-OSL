@@ -57,8 +57,8 @@ shader randomUVW
     float fu = 0;
     float fv = 0;
 
-    float uu = u*RepeatUVW[0];
-    float vv = v*RepeatUVW[1];
+    float uu = u*Repeat_UVW[0];
+    float vv = v*Repeat_UVW[1];
     if(Singal_Object !=0 )
     {
         fu = floor(uu);
