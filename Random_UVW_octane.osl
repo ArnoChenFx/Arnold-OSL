@@ -1,0 +1,146 @@
+shader randomUVW
+
+(
+
+    output color UVW = 1,
+
+    color Random_Color = 0,
+
+    //rotate
+
+    float Rotate = 0,
+
+    float Rotate_Step = 0,
+
+    float Rotate_Varience = 0,
+
+    //scale
+
+    vector Scale = 1,
+
+    float Uniform_Scale = 1,
+
+    vector Scale_Varience = 0,
+
+    float Uniform_Scale_Varience = 0,
+
+
+
+    //offset
+
+    vector Offset = 0,
+
+    vector Offset_Varience = 0,
+
+
+
+    //extra
+
+    int Mirror = 0,
+
+    float Seed = 1 ,
+
+    int Singal_Object = 0,
+
+    vector Repeat_UVW = 1
+
+)
+
+{
+    float Object_ID = Random_Color[0]+Random_Color[1]+Random_Color[2];
+
+    float ID = Object_ID*1000;
+
+    float fu = 0;
+    float fv = 0;
+
+    float uu = u*Repeat_UVW[0];
+    float vv = v*Repeat_UVW[1];
+    if(Singal_Object !=0 )
+    {
+        fu = floor(uu);
+        fv = floor(vv);
+        ID = fu+fv;
+    }
+
+    float myU = uu - (0.5 + fu);
+
+    float myV = vv - (0.5 + fv);
+
+    //scale
+    float Srandf = cos(ID*Uniform_Scale_Varience*354+Seed)*Uniform_Scale_Varience;
+    float SrandfU = cos(ID*Scale_Varience[0]*144+Seed)*Scale_Varience[0];
+    float SrandfV = cos(ID*Scale_Varience[1]*475+Seed)*Scale_Varience[1];
+
+
+    myU -= myU * (SrandfU + Srandf + Scale[0] + Uniform_Scale - 2);
+
+    myV -= myV * (SrandfV + Srandf + Scale[1] + Uniform_Scale - 2);
+
+
+    //rotate
+
+    int Rrandi = int(cos(ID*14104)*6514+Seed+1);
+    float Rrandf = cos(ID*Rotate_Varience*454)*Rotate_Varience;
+
+    float final_rotate = radians(Rotate_Step * Rrandi + Rrandf + Rotate);
+
+    //final_rotate = M_PI_2*4;
+
+    float u1 = cos(final_rotate) * myU - sin(final_rotate) * myV;
+    float v1 = sin(final_rotate) * myU + cos(final_rotate) * myV;
+
+    myU = u1 + 0.5 + fu;
+    myV = v1 + 0.5 + fv;
+
+
+
+    //offset
+
+    float PrandfU = cos(ID*Offset_Varience[0]*157+Seed)*Offset_Varience[0];
+
+    float PrandfV = cos(ID*Offset_Varience[1]*452+Seed)*Offset_Varience[1];
+
+    myU += (PrandfU + Offset[0]) * 0.1;
+
+    myV += (PrandfV + Offset[1]) * 0.1;
+
+
+
+    //repeat
+
+    if(Mirror == 0)
+
+    {
+
+        myU = mod(myU,1.0);
+
+        myV = mod(myV,1.0);
+
+    }
+
+    else
+
+    {
+
+        int tempU = int(myU);
+
+        int tempV = int(myV);
+
+        if(tempU%2 == 0) myU = mod(myU,1.0);
+
+        else myU = 1.0 - mod(myU,1.0);
+
+
+
+        if(tempV%2 == 0) myV = mod(myV,1.0);
+
+        else myV = 1.0 - mod(myV,1.0);
+
+
+
+    }
+
+    UVW = color(myU,myV, 0);
+
+}
