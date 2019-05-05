@@ -1,7 +1,3 @@
-
-
-
-
 shader randomUVW
 
 (
@@ -45,7 +41,7 @@ shader randomUVW
     float Seed = 1 ,
 
     int Singal_Object = 0,
-    
+
     vector Repeat_UVW = 1
 
 )
@@ -83,7 +79,7 @@ shader randomUVW
 
     //rotate
 
-    int Rrandi = floor(cos(ID*14104)*6514+Seed+1);
+    int Rrandi = int(cos(ID*14104)*6514+Seed+1);
     float Rrandf = cos(ID*Rotate_Varience*454)*Rotate_Varience;
 
     float final_rotate = radians(Rotate_Step * Rrandi + Rrandf + Rotate);
@@ -126,9 +122,9 @@ shader randomUVW
 
     {
 
-        int tempU = floor(myU);
+        int tempU = int(myU);
 
-        int tempV = floor(myV);
+        int tempV = int(myV);
 
         if(tempU%2 == 0) myU = mod(myU,1.0);
 
