@@ -39,7 +39,7 @@ shader randomUVW
     [[string label = "Seed",float min=0, float max=100]],
 
     int Single_Object = 0
-    [[string label = "Singal_Object",int min=0, int max=1]],
+    [[string label = "Single_Object",int min=0, int max=1]],
     vector Repeat_UVW = 1
     [[string label = "Repeat_UVW",int min=0, int max=5]],
 )
