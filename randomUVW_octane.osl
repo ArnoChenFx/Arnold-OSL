@@ -3,52 +3,49 @@ shader randomUVW
 (
 
     output color UVW = 1,
-
     color Random_Color = 0,
 
     //rotate
-
-    float Rotate = 0,
-
-    float Rotate_Step = 0,
-
-    float Rotate_Varience = 0,
+    float Rotate = 0
+    [[string label = "Rotate",float min=0, float max=360]],
+    float Rotate_Step = 0
+    [[string label = "Rotate_Step",float min=0, float max=360]],
+    float Rotate_Varience = 0
+    [[string label = "Rotate_Varience",float min=0, float max=360]],
 
     //scale
-
-    vector Scale = 1,
-
-    float Uniform_Scale = 1,
-
-    vector Scale_Varience = 0,
-
-    float Uniform_Scale_Varience = 0,
-
+    vector Scale = 1
+    [[string label = "Scale",float min=0, float max=5]],
+    float Uniform_Scale = 1
+    [[string label = "Uniform_Scale",float min=0, float max=5]],
+    vector Scale_Varience = 0
+    [[string label = "Scale_Varience",float min=0, float max=5]],
+    float Uniform_Scale_Varience = 0
+    [[string label = "Uniform_Scale_Varience",float min=0, float max=5]],
 
 
     //offset
+    vector Offset = 0
+    [[string label = "Offset",float min=0, float max=1]],
 
-    vector Offset = 0,
-
-    vector Offset_Varience = 0,
-
+    vector Offset_Varience = 0
+    [[string label = "Offset_Varience",float min=0, float max=1]],
 
 
     //extra
+    int Mirror = 0
+    [[string label = "Mirror",int min=0, int max=1]],
+    float Seed = 1
+    [[string label = "Seed",float min=0, float max=100]],
 
-    int Mirror = 0,
-
-    float Seed = 1 ,
-
-    int Singal_Object = 0,
-
+    int Singal_Object = 0
+    [[string label = "Singal_Object",int min=0, int max=1]],
     vector Repeat_UVW = 1
-
+    [[string label = "Repeat_UVW",int min=0, int max=5]],
 )
 
 {
     float Object_ID = Random_Color[0]+Random_Color[1]+Random_Color[2];
-
     float ID = Object_ID*1000;
 
     float fu = 0;
