@@ -38,7 +38,7 @@ shader randomUVW
     float Seed = 1
     [[string label = "Seed",float min=0, float max=100]],
 
-    int Singal_Object = 0
+    int Single_Object = 0
     [[string label = "Singal_Object",int min=0, int max=1]],
     vector Repeat_UVW = 1
     [[string label = "Repeat_UVW",int min=0, int max=5]],
@@ -53,7 +53,7 @@ shader randomUVW
 
     float uu = u*Repeat_UVW[0];
     float vv = v*Repeat_UVW[1];
-    if(Singal_Object !=0 )
+    if(Single_Object !=0 )
     {
         fu = floor(uu);
         fv = floor(vv);
