@@ -40,7 +40,7 @@ shader randomUVW
 
     float Seed = 1 ,
 
-    int Singal_Object = 0,
+    int Single_Object = 0,
 
     vector Repeat_UVW = 1
 
@@ -55,7 +55,7 @@ shader randomUVW
 
     float uu = u*Repeat_UVW[0];
     float vv = v*Repeat_UVW[1];
-    if(Singal_Object !=0 )
+    if(Single_Object !=0 )
     {
         fu = floor(uu);
         fv = floor(vv);
